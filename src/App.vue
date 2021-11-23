@@ -1,6 +1,10 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <p>{{ product }}</p>
+  <p>I love {{ product }}</p>
+  <p>{{ getValue() }}</p>
+  <h3>{{ firstName + ' ' + lastName }}</h3>
+  <h3>{{ clicked ? true : false }}</h3>
 </template>
 
 <script lang="ts">
@@ -13,12 +17,20 @@ export default defineComponent({
   },
   data() {
     return {
-      product: 'Socks'
+      product: 'Boots',
+      firstName: 'Andy',
+      lastName: 'Chen',
+      clicked: true
     };
   },
   mounted() {
     print('hello vue3 + typescript!');
-  }
+  },
+  methods: {
+    getValue() {
+      return 'vue3 + typescript';
+    }
+  },
 });
 </script>
 
