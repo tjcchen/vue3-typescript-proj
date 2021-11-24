@@ -5,6 +5,10 @@
   <p>{{ getValue() }}</p>
   <h3>{{ firstName + ' ' + lastName }}</h3>
   <h3>{{ clicked ? true : false }}</h3>
+  <p v-if="inventory > 10">In Stock</p>
+  <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
+  <p v-else>Out of Stock</p>
+  <p v-show="inStock">Shown</p>
 </template>
 
 <script lang="ts">
@@ -22,6 +26,8 @@ export default defineComponent({
       lastName: 'Chen',
       clicked: true,
       alt: 'Google Logo',
+      inStock: false,
+      inventory: 8,
       image: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
     };
   },
