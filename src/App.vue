@@ -1,5 +1,5 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+  <img :alt="alt" v-bind:src="image" class="image">
   <p>{{ product }}</p>
   <p>I love {{ product }}</p>
   <p>{{ getValue() }}</p>
@@ -20,7 +20,9 @@ export default defineComponent({
       product: 'Boots',
       firstName: 'Andy',
       lastName: 'Chen',
-      clicked: true
+      clicked: true,
+      alt: 'Google Logo',
+      image: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
     };
   },
   mounted() {
@@ -42,5 +44,10 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.image {
+  width: 200px;
+  height: 80px;
+  object-fit: contain;
 }
 </style>
