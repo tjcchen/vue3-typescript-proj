@@ -9,6 +9,17 @@
   <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
   <p v-else>Out of Stock</p>
   <p v-show="inStock">Shown</p>
+  <ul>
+    <li
+      v-for="(detail, index) in details"
+      :key="index"
+    >
+      {{ detail }}
+    </li>
+    <ol v-for="variant in variants" :key="variant.id">
+      <li>{{ variant.color }}</li>
+    </ol>
+  </ul>
 </template>
 
 <script lang="ts">
@@ -29,6 +40,11 @@ export default defineComponent({
       inStock: false,
       inventory: 8,
       image: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+      details: ['50% cotton', '30% wool', '20% polyester'],
+      variants: [
+        { id: 1234, color: 'green' },
+        { id: 5678, color: 'blue' }
+      ]
     };
   },
   mounted() {
