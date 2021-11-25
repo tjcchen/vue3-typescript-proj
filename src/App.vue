@@ -1,25 +1,24 @@
 <template>
   <img :alt="alt" v-bind:src="image" class="image">
-  <p>{{ product }}</p>
-  <p>I love {{ product }}</p>
-  <p>{{ getValue() }}</p>
+  <p @mouseover="onMouseOver(1)">{{ product }}</p>
+  <p @mouseover="onMouseOver(2)">I love {{ product }}</p>
+  <p @mouseover="onMouseOver(3)">{{ getValue() }}</p>
   <h3>{{ firstName + ' ' + lastName }}</h3>
   <h3>{{ clicked ? true : false }}</h3>
   <p v-if="inventory > 10">In Stock</p>
   <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
   <p v-else>Out of Stock</p>
   <p v-show="inStock">Shown</p>
+  <div>Cart: {{ cart }}</div>
+  <button @click="addToCart">Click Me!</button>
   <ul>
-    <li
-      v-for="(detail, index) in details"
-      :key="index"
-    >
+    <li v-for="(detail, index) in details" :key="index">
       {{ detail }}
     </li>
-    <ol v-for="variant in variants" :key="variant.id">
-      <li>{{ variant.color }}</li>
-    </ol>
   </ul>
+  <ol v-for="variant in variants" :key="variant.id">
+    <li>{{ variant.color }}</li>
+  </ol>
 </template>
 
 <script lang="ts">
@@ -44,7 +43,8 @@ export default defineComponent({
       variants: [
         { id: 1234, color: 'green' },
         { id: 5678, color: 'blue' }
-      ]
+      ],
+      cart: 0
     };
   },
   mounted() {
@@ -53,6 +53,12 @@ export default defineComponent({
   methods: {
     getValue() {
       return 'vue3 + typescript';
+    },
+    addToCart() {
+      this.cart++;
+    },
+    onMouseOver(number: number) {
+      console.log(number);
     }
   },
 });
