@@ -1,9 +1,9 @@
 <template>
   <img :alt="alt" v-bind:src="image" class="image">
-  <p @mouseover="onMouseOver(1)">{{ product }}</p>
+  <p @mouseover="onMouseOver(1)">{{ combinedName }}</p>
   <p @mouseover="onMouseOver(2)">I love {{ product }}</p>
   <p @mouseover="onMouseOver(3)">{{ getValue() }}</p>
-  <h3>{{ firstName + ' ' + lastName }}</h3>
+  <h3>{{ firstName + ' ' + lastName }}</h3>s
   <h3 :style="styles">{{ clicked ? true : false }}</h3>
   <p v-if="inventory > 10">In Stock</p>
   <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { print } from './utils/utils';
 
 export default defineComponent({
@@ -39,6 +39,7 @@ export default defineComponent({
   },
   data() {
     return {
+      brand: 'Vue3 Studio',
       product: 'Boots',
       firstName: 'Andy',
       lastName: 'Chen',
@@ -76,6 +77,14 @@ export default defineComponent({
       console.log(number);
     }
   },
+  setup() {
+    const combinedName = computed(() => {
+      return 'Vue3 Studio Boots';
+    });
+    return {
+      combinedName
+    };
+  }
 });
 </script>
 
