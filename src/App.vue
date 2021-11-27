@@ -9,8 +9,8 @@
   <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
   <p v-else>Out of Stock</p>
   <p v-show="inStock">Shown</p>
-  <div>Cart: {{ cart }}</div>
-  <button @click="addToCart">Click Me!</button>
+  <div>Inventory: {{ inventory }}</div>
+  <button :disabled="!inStock" :class="{ disabledButton: !inStock }" @click="addToCart">Add to Cart</button>
   <!-- ul>
     <li v-for="(detail, index) in details" :key="index">
       {{ detail }}
@@ -21,8 +21,11 @@
       v-for="variant in variants"
       :key="variant.id"
       :style="{ backgroundColor: variant.color }"
+      :class="{ active: activeClass }"
       class="color-circle"
     ></li>
+    <!-- :style="{'background-color': variant.color}" -->
+    <!-- :class="[activeClass ? 'active' : '']" -->
   </ol>
 </template>
 
@@ -41,7 +44,7 @@ export default defineComponent({
       lastName: 'Chen',
       clicked: true,
       alt: 'Google Logo',
-      inStock: false,
+      inStock: true,
       inventory: 8,
       image: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
       details: ['50% cotton', '30% wool', '20% polyester'],
@@ -53,7 +56,9 @@ export default defineComponent({
       styles: {
         color: 'red',
         fontSize: '14px'
-      }
+      },
+      activeClass: true,
+      isShown: true,
     };
   },
   mounted() {
@@ -64,7 +69,8 @@ export default defineComponent({
       return 'vue3 + typescript';
     },
     addToCart() {
-      this.cart++;
+      this.inventory--;
+      this.inventory > 0 ? this.inStock = true : this.inStock = false;
     },
     onMouseOver(number: number) {
       console.log(number);
@@ -96,5 +102,9 @@ ol, ul, li {
   margin-top: 8px;
   border: 1px solid #d8d8d8;
   border-radius: 50%;
+}
+.disabledButton {
+  background: #d8d8d8;
+  cursor: not-allowed;
 }
 </style>
