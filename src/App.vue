@@ -40,7 +40,7 @@ export default defineComponent({
   data() {
     return {
       brand: 'Vue3 Studio',
-      product: 'Boots',
+      product: 'Socks',
       firstName: 'Andy',
       lastName: 'Chen',
       clicked: true,
@@ -77,12 +77,17 @@ export default defineComponent({
       console.log(number);
     }
   },
+  computed: {
+    combinedName(): string {
+      return this.brand + ' ' + this.product;
+    }
+  },
   setup() {
-    const combinedName = computed(() => {
+    const title = computed(() => {
       return 'Vue3 Studio Boots';
     });
     return {
-      combinedName
+      title
     };
   }
 });
