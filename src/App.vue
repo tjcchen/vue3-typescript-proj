@@ -1,6 +1,6 @@
 <template>
   <img v-bind:src="image" class="image">
-  <product-display></product-display>
+  <product-display :premium="premium"></product-display>
 </template>
 
 <script lang="ts">
@@ -16,6 +16,7 @@ export default defineComponent({
   data() {
     return {
       image: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+      premium: true,
     };
   },
   mounted() {

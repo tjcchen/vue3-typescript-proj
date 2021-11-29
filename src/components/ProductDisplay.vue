@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h3>shipping: {{ shipping }}</h3>
     <p @mouseover="onMouseOver(1)">{{ combinedName }}</p>
     <p @mouseover="onMouseOver(2)">I love {{ product }}</p>
     <p @mouseover="onMouseOver(3)">{{ getValue() }}</p>
@@ -27,6 +28,13 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
+  props: {
+    premium: {
+      type: Boolean,
+      required: true,
+      default: false
+    }
+  },
   data() {
     return {
       brand: 'Vue3 Studio',
@@ -65,6 +73,12 @@ export default defineComponent({
   computed: {
     combinedName(): string {
       return this.brand + ' ' + this.product;
+    },
+    shipping() {
+      if (this.premium) {
+        return 'Free';
+      }
+      return 2.99;
     }
   },
 });
