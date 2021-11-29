@@ -27,15 +27,18 @@
     <!-- :style="{'background-color': variant.color}" -->
     <!-- :class="[activeClass ? 'active' : '']" -->
   </ol>
+  <product-display></product-display>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { print } from './utils/utils';
+import ProductDisplay from './components/ProductDisplay.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
+    ProductDisplay
   },
   data() {
     return {
