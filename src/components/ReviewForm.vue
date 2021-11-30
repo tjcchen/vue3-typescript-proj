@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin: 20px 0;">
     <form action="#" method="post" class="review-form" @submit.prevent="onSubmit">
       <h3>Leave a reivew</h3>
       <label for="name">name: </label>
@@ -16,6 +16,8 @@
         <option>2</option>
         <option>1</option>
       </select>
+      <br/>
+      <button type="submit">Submit Form</button>
     </form>
   </div>
 </template>

@@ -10,8 +10,13 @@
     :inStock="inStock"
     @addToCart="updateCart"
   />
+  <div>
+    <p>name: {{ formInfo.name }}</p>
+    <p>review: {{ formInfo.review }}</p>
+    <p>rating: {{ formInfo.rating }}</p>
+  </div>
   <hr/>
-  <review-form></review-form>
+  <review-form @review-submitted="reviewSubmitted"></review-form>
 </template>
 
 <script lang="ts">
@@ -32,6 +37,11 @@ export default defineComponent({
       premium: true,
       inventory: 8,
       inStock: true,
+      formInfo: {
+        name: '',
+        review: '',
+        rating: null
+      }
     };
   },
   mounted() {
@@ -41,6 +51,9 @@ export default defineComponent({
     updateCart() {
       this.inventory--;
       this.inventory > 0 ? this.inStock = true : this.inStock = false;
+    },
+    reviewSubmitted(review: { [prop: string]: any }) {
+      this.formInfo = Object.assign(this.formInfo, review);
     }
   },
   setup() {
