@@ -1,6 +1,11 @@
 <template>
   <img v-bind:src="image" class="image">
-  <product-display :premium="premium"></product-display>
+  <div>Inventory: {{ inventory }}</div>
+  <p v-if="inventory > 10">In Stock</p>
+  <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
+  <p v-else>Out of Stock</p>
+  <p v-show="inStock">Shown</p>
+  <product-display :premium="premium" :inStock="inStock" @addToCart="updateCart"></product-display>
 </template>
 
 <script lang="ts">
@@ -17,10 +22,18 @@ export default defineComponent({
     return {
       image: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
       premium: true,
+      inventory: 8,
+      inStock: true,
     };
   },
   mounted() {
     print('hello vue3 + typescript!');
+  },
+  methods: {
+    updateCart() {
+      this.inventory--;
+      this.inventory > 0 ? this.inStock = true : this.inStock = false;
+    }
   },
   setup() {
     const title = computed(() => {

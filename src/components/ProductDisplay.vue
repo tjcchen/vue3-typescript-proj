@@ -6,11 +6,6 @@
     <p @mouseover="onMouseOver(3)">{{ getValue() }}</p>
     <h3>{{ firstName + ' ' + lastName }}</h3>s
     <h3 :style="styles">{{ clicked ? true : false }}</h3>
-    <p v-if="inventory > 10">In Stock</p>
-    <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
-    <p v-else>Out of Stock</p>
-    <p v-show="inStock">Shown</p>
-    <div>Inventory: {{ inventory }}</div>
     <button :disabled="!inStock" :class="{ disabledButton: !inStock }" @click="addToCart">Add to Cart</button>
     <ol>
       <li
@@ -33,6 +28,10 @@ export default defineComponent({
       type: Boolean,
       required: true,
       default: false
+    },
+    inStock: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -42,8 +41,6 @@ export default defineComponent({
       firstName: 'Andy',
       lastName: 'Chen',
       clicked: true,
-      inStock: true,
-      inventory: 8,
       details: ['50% cotton', '30% wool', '20% polyester'],
       variants: [
         { id: 1234, color: 'green' },
@@ -63,8 +60,7 @@ export default defineComponent({
       return 'vue3 + typescript';
     },
     addToCart(): void {
-      this.inventory--;
-      this.inventory > 0 ? this.inStock = true : this.inStock = false;
+      this.$emit('addToCart');
     },
     onMouseOver(number: number) {
       console.log(number);
