@@ -16,7 +16,7 @@
     <p>rating: {{ formInfo.rating }}</p>
   </div>
   <hr/>
-  <review-form @review-submitted="reviewSubmitted"></review-form>
+  <review-form @review-submitted="addReview"></review-form>
 </template>
 
 <script lang="ts">
@@ -52,7 +52,7 @@ export default defineComponent({
       this.inventory--;
       this.inventory > 0 ? this.inStock = true : this.inStock = false;
     },
-    reviewSubmitted(review: { [prop: string]: any }) {
+    addReview(review: { [prop: string]: any }) {
       this.formInfo = Object.assign(this.formInfo, review);
     }
   },
