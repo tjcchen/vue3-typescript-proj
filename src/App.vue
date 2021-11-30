@@ -5,18 +5,26 @@
   <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
   <p v-else>Out of Stock</p>
   <p v-show="inStock">Shown</p>
-  <product-display :premium="premium" :inStock="inStock" @addToCart="updateCart"></product-display>
+  <product-display
+    :premium="premium"
+    :inStock="inStock"
+    @addToCart="updateCart"
+  />
+  <hr/>
+  <review-form></review-form>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { print } from './utils/utils';
 import ProductDisplay from './components/ProductDisplay.vue';
+import ReviewForm from './components/ReviewForm.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    ProductDisplay
+    ProductDisplay,
+    ReviewForm,
   },
   data() {
     return {
