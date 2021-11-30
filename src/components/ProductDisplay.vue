@@ -83,6 +83,13 @@ export default defineComponent({
 <style>
 ol, ul, li {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
 }
 .color-circle {
   width: 50px;
